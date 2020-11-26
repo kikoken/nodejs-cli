@@ -17,35 +17,39 @@ const main = () => {
     chalk.yellow(
         fliget.textSync('ALGORITHMS', { horizontalLayout: 'full'})
     )
+   
+}
+
+const run = () => {
     inquirer
-        .prompt([
-            {
-            type: 'rawlist',
-            name: 'theme',
-            message: 'Select for run script:',
-            choices: stringsList,
-            }
-        ])
-        .then((answers) => {
-            const { theme } = answers
-            switch(theme) {
-                case 'Composite':
-                    Composite()
-                case 'Longest String':
-                    Longest()
-                case 'String Repetition':
-                    Repetition()
-                case 'Only Last Name':
-                    onlyLastNames()
-                case 'Unique Numbers':
-                    const arr1 = [1, 2, 5]
-                    const arr2 =  [2, 1, 6]
-                    console.log(`Result [${arr1.toString()}] [${arr2.toString()}] `, unique(arr1, arr2).toString())
-                default:
-                    console.log('Not option')
-                    break
-            }
-        });
+    .prompt([
+        {
+        type: 'rawlist',
+        name: 'theme',
+        message: 'Select for run script:',
+        choices: stringsList,
+        }
+    ])
+    .then((answers) => {
+        const { theme } = answers
+        switch(theme) {
+            case 'Composite':
+                Composite()
+            case 'Longest String':
+                Longest()
+            case 'String Repetition':
+                Repetition()
+            case 'Only Last Name':
+                onlyLastNames()
+            case 'Unique Numbers':
+                const arr1 = [1, 2, 5]
+                const arr2 =  [2, 1, 6]
+                console.log(`Result [${arr1.toString()}] [${arr2.toString()}] `, unique(arr1, arr2).toString())
+            default:
+                console.log('Not option')
+                break
+        }
+    });
 }
 
 const Composite = () => {
