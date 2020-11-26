@@ -15,7 +15,7 @@ const stringsList = ['Composite', 'Longest String', 'String Repetition', 'Only L
 const main = () => {
     clear()
     chalk.yellow(
-        fliget.textSync('ALGORITHMS', { horizontalLayout: 'full'})
+        fliget.text('ALGORITHMS', { horizontalLayout: 'full'})
     )
    
 }
