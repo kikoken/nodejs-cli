@@ -31,25 +31,32 @@ const run = () => {
         switch(theme) {
             case 'Composite':
                 Composite()
+                break
             case 'Longest String':
                 Longest()
+                ask()
+                break
             case 'String Repetion':
                 Repetition()
+                break
             case 'Only Last Name':
                 onlyLastNames()
+                ask()
+                break
             case 'Unique Numbers':
                 const arr1 = [1, 2, 5]
                 const arr2 =  [2, 1, 6]
                 console.log(`Result [${arr1.toString()}] [${arr2.toString()}] `, unique(arr1, arr2).toString())
+                ask()
             default:
                 ask()
                 break
         }
-        ask()
     });
 }
 
 const ask = () => {
+    
     inquirer
     .prompt([
         new inquirer.Separator(),
@@ -61,11 +68,7 @@ const ask = () => {
         }
     ])
     .then(answers => {
-        if(answers.confirm) {
-            main()
-        } else {
-            inquirer.exit()
-        }
+        if(answers.confirm)  main()
     })
 }
 
@@ -91,12 +94,12 @@ const Composite = () => {
         .then((answers) => {
             const {a,b,c} = answers
             console.log('Result: ', composite(a)(b)(c));
-        });     
+        })
+        .then(() => ask());     
 }
 
 const Longest = () => {
     const list = ['best', 'company', 'ever']
-
     console.log(`The longest string in ${list.toString()}: `,longString(list))
 }
 
@@ -118,9 +121,10 @@ const Repetition = () => {
             const {word, nro} = answers
             console.log('Result: ',stringRepetition(word, nro))
         })
+        .then(() => ask());
 }
 
-const onlyLastNames = () => consolelog(lastnames())
+const onlyLastNames = () => console.log(lastnames())
 
 
 main()
