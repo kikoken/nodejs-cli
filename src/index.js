@@ -1,7 +1,5 @@
 import inquirer from 'inquirer'
 import clear from 'clear'
-import chalk from 'chalk'
-import fliget from 'fliget'
 
 //scripts
 import composite from './algorithms/composite'
@@ -10,13 +8,11 @@ import stringRepetition from './algorithms/stringRepetition'
 import lastnames from './algorithms/onlyLastNames'
 import unique from './algorithms/uniqueNumbers'
 
-const stringsList = ['Composite', 'Longest String', 'String Repetition', 'Only Last Name', 'Unique Numbers']
+const stringsList = ['Composite', 'Longest String', 'String Repetion', 'Only Last Name', 'Unique Numbers']
 
 const main = () => {
     clear()
-    chalk.yellow(
-        fliget.text('ALGORITHMS', { horizontalLayout: 'full'})
-    )
+    run()
    
 }
 
@@ -37,7 +33,7 @@ const run = () => {
                 Composite()
             case 'Longest String':
                 Longest()
-            case 'String Repetition':
+            case 'String Repetion':
                 Repetition()
             case 'Only Last Name':
                 onlyLastNames()
@@ -46,10 +42,31 @@ const run = () => {
                 const arr2 =  [2, 1, 6]
                 console.log(`Result [${arr1.toString()}] [${arr2.toString()}] `, unique(arr1, arr2).toString())
             default:
-                console.log('Not option')
+                ask()
                 break
         }
+        ask()
     });
+}
+
+const ask = () => {
+    inquirer
+    .prompt([
+        new inquirer.Separator(),
+        {
+        type: 'confirm',
+        name: 'confirm',
+        message: 'Do you like another run script? (Y)',
+        default: true,
+        }
+    ])
+    .then(answers => {
+        if(answers.confirm) {
+            main()
+        } else {
+            inquirer.exit()
+        }
+    })
 }
 
 const Composite = () => {
