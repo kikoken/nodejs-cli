@@ -59,7 +59,6 @@ const ask = () => {
     
     inquirer
     .prompt([
-        new inquirer.Separator(),
         {
         type: 'confirm',
         name: 'confirm',
@@ -72,23 +71,33 @@ const ask = () => {
     })
 }
 
+
+const validateNumber = (value) => {
+    let valid = !isNaN(value);
+    if(!valid) return  'Please enter a number'
+    return true
+  }
+
 const Composite = () => {
     inquirer
         .prompt([
             {
-                type: 'number',
+                type: 'input',
                 name: 'a',
-                message: 'Enter the first number:'
+                message: 'Enter the first number:',
+                validate:  validateNumber
             },
             {
-                type: 'number',
+                type: 'input',
                 name: 'b',
-                message: 'Enter the second number:'
+                message: 'Enter the second number:',
+                validate:  validateNumber
             },
             {
-                type: 'number',
+                type: 'input',
                 name: 'c',
-                message: 'Enter the last number:'
+                message: 'Enter the last number:',
+                validate:  validateNumber
             }
         ])
         .then((answers) => {
@@ -112,9 +121,10 @@ const Repetition = () => {
                 message: 'Enter the word:'
             },
             {
-                type: 'number',
+                type: 'input',
                 name: 'nro',
-                message: 'Enter the repetion number:'
+                message: 'Enter the repetion number:',
+                validate:  validateNumber
             }
         ])
         .then(answers => {
